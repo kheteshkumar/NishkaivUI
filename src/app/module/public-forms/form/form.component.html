@@ -1,0 +1,24 @@
+<div class="ui segment modal-loader" style="min-width: 50vw" *ngIf="isLoader; else loaded">
+  <div class="ui active dimmer">
+    <div class="ui indeterminate text loader">Loading</div>
+  </div>
+</div>
+<ng-template #loaded>
+  <div class="ui" *ngIf="!isError; else error">
+    <div class="ui segment orange" style="min-width: 50vw">
+      <h1>{{ details.formTitle }}</h1>
+
+      <p *ngIf="details.formDescription">{{ details.formDescription }}</p>
+
+      <formio *ngIf="details?.fields" (submit)="onSubmit($event)" [form]="details.fields"></formio>
+    </div>
+  </div>
+  <ng-template #error>
+    <div class="ui message" [ngClass]="isWarning && isError ? 'warning' : 'error'">
+      <div class="header">{{ isWarning && isError ? 'Message' : 'Error' }}</div>
+      <ul class="list">
+        <li>{{ errorMessage }}</li>
+      </ul>
+    </div>
+  </ng-template>
+</ng-template>

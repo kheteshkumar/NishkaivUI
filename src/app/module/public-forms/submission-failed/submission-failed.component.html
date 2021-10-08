@@ -1,0 +1,7 @@
+<div class="ui error message">
+  <div class="header">Error!!<span *ngIf="transactionStatus"> transaction created with status {{transactionStatus}}</span></div>
+  <ul class="list">
+    <li *ngIf="!transactionStatus">Failed to submit form.</li>
+    <li>Please contact the administration.</li>
+  </ul>
+</div>
